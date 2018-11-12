@@ -56,7 +56,7 @@ module Fastlane
                                description: "symbol type for UploadDsymToBuglyAction",
                                  is_string: false,
                               verify_block: proc do |value|
-                                UI.user_error!("No symbol type for UploadDsymToBuglyAction given, pass using `symbol_type: 'symbol_type'`") unless (value and not value.empty?)
+                                UI.user_error!("No symbol type for UploadDsymToBuglyAction given, pass using `symbol_type: 'symbol_type'`") unless (value and not value.to_s.empty?)
                               end),                                 
           FastlaneCore::ConfigItem.new(key: :bundle_id,
                                   env_name: "FL_UPLOAD_DSYM_TO_BUGLY_BUNDLE_ID",
