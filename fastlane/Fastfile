@@ -1,0 +1,3 @@
+lane :test do
+  upload_dsym_to_bugly
+end
