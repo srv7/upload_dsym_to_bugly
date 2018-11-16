@@ -6,34 +6,33 @@
 
 This project is a [_fastlane_](https://github.com/fastlane/fastlane) plugin. To get started with `fastlane-plugin-upload_dsym_to_bugly`, add it to your project by running:
 
-```bash
+```shell
 fastlane add_plugin upload_dsym_to_bugly
+```
+
+```ruby
+lane :upload_dysm do
+    upload_dsym_to_bugly(
+      file_path: "<your dSYM.zip path>",
+      file_name: "<your dSYM.zip name>",
+      app_key: "<your app_key>",
+      app_id:"<your app_id>",
+      api_version: 1,
+      symbol_type: 2, # iOS => 2, Android => 1
+      bundle_id: '<your bundle id>',
+      product_version: `/usr/libexec/PlistBuddy -c \"print CFBundleShortVersionString\" \"../<scheme name>/Info.plist\"`,
+    )
+end
 ```
 
 ## About upload_dsym_to_bugly
 
-upload_dsym_to_bugly
+upload dSYM to bugly
 
-**Note to author:** Add a more detailed description about this plugin here. If your plugin contains multiple actions, make sure to mention them here.
+## Using _fastlane_ Plugins
 
-## Example
+For more information about how the `fastlane` plugin system works, check out the [Plugins documentation](https://docs.fastlane.tools/plugins/create-plugin/).
 
-Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`.
-
-**Note to author:** Please set up a sample project to make it easy for users to explore what your plugin does. Provide everything that is necessary to try out the plugin in this project (including a sample Xcode/Android project if necessary)
-
-## Run tests for this plugin
-
-To run both the tests, and code style validation, run
-
-```
-rake
-```
-
-To automatically fix many of the styling issues, use
-```
-rubocop -a
-```
 
 ## Issues and Feedback
 
@@ -42,10 +41,6 @@ For any other issues and feedback about this plugin, please submit it to this re
 ## Troubleshooting
 
 If you have trouble using plugins, check out the [Plugins Troubleshooting](https://docs.fastlane.tools/plugins/plugins-troubleshooting/) guide.
-
-## Using _fastlane_ Plugins
-
-For more information about how the `fastlane` plugin system works, check out the [Plugins documentation](https://docs.fastlane.tools/plugins/create-plugin/).
 
 ## About _fastlane_
 
