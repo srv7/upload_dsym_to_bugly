@@ -20,7 +20,7 @@ lane :upload_dysm do
       api_version: 1,
       symbol_type: 2, # iOS => 2, Android => 1
       bundle_id: '<your bundle id>',
-      product_version: `/usr/libexec/PlistBuddy -c \"print CFBundleShortVersionString\" \"../<scheme name>/Info.plist\"`,
+      product_version: `/usr/libexec/PlistBuddy -c \"print CFBundleShortVersionString\" \"<path/to/your/Info.plist>\"`,
     )
 end
 ```
