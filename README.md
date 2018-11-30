@@ -7,9 +7,10 @@
 This project is a [_fastlane_](https://github.com/fastlane/fastlane) plugin. To get started with `fastlane-plugin-upload_dsym_to_bugly`, add it to your project by running:
 
 ```shell
-fastlane add_plugin upload_dsym_to_bugly
+$ fastlane add_plugin upload_dsym_to_bugly
 ```
 
+add the following to your `fastfile`
 ```ruby
 lane :upload_dysm do
     upload_dsym_to_bugly(
