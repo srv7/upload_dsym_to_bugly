@@ -26,6 +26,25 @@ lane :upload_dysm do
 end
 ```
 
+if you want to upload your ipa to bugly, add the following to your `fastfile`
+```ruby
+lane :upload_ipa do
+    upload_app_to_bugly(
+      file_path:"<your *.ipa filepath>",
+      app_key:"<your app_key>",
+      app_id:"<your app_id>",
+      pid:"2",
+      title:"<title>",
+      desc:"<description>",
+      secret:"<secret>",
+      users:"<users>",
+      password:"<password>",
+      download_limit:download_limit
+    )
+end
+
+```
+
 ## About upload_dsym_to_bugly
 
 upload dSYM to bugly
