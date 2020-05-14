@@ -14,14 +14,14 @@ add the following to your `fastfile`
 ```ruby
 lane :upload_dysm do
     upload_dsym_to_bugly(
-      file_path: "<your dSYM.zip path>",
+      file_path: "<your dSYM.zip path>/<your dSYM.zip name>",
       file_name: "<your dSYM.zip name>",
       app_key: "<your app_key>",
       app_id:"<your app_id>",
       api_version: 1,
       symbol_type: 2, # iOS => 2, Android => 1
       bundle_id: '<your bundle id>',
-      product_version: `/usr/libexec/PlistBuddy -c \"print CFBundleShortVersionString\" \"<path/to/your/Info.plist>\"`,
+      product_version: get_version_number
     )
 end
 ```
