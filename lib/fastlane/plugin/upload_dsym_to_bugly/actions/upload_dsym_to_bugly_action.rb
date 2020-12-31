@@ -3,6 +3,9 @@ require_relative "../helper/upload_dsym_to_bugly_helper"
 
 module Fastlane
   module Actions
+    module SharedValues
+      UPLOAD_DSYM_TO_BUGLY_RESULT = :UPLOAD_DSYM_TO_BUGLY_RESULT
+    end
     class UploadDsymToBuglyAction < Action
       def self.run(params)
         require "json"
@@ -39,12 +42,15 @@ module Fastlane
           ret = obj["rtcode"]
           if ret == 0
             UI.message "dSYM upload success"
+            Actions.lane_context[SharedValues::UPLOAD_DSYM_TO_BUGLY_RESULT] = true
           else
             UI.message "dSYM upload failed, result is #{obj}"
+            Actions.lane_context[SharedValues::UPLOAD_DSYM_TO_BUGLY_RESULT] = false
             raise if params[:raise_if_error]
           end
         rescue
           UI.message "dSYM upload failed"
+          Actions.lane_context[SharedValues::UPLOAD_DSYM_TO_BUGLY_RESULT] = false
           raise if params[:raise_if_error]
         end
       end
@@ -134,6 +140,13 @@ module Fastlane
                                        is_string: false,
                                        type: Boolean,
                                        optional: false),
+        ]
+      end
+
+      def self.output
+        # Define the shared values you are going to provide
+        [
+          ["UPLOAD_DSYM_TO_BUGLY_RESULT", "upload result"],
         ]
       end
 
