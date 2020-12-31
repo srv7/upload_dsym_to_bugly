@@ -28,7 +28,7 @@ end
 
 if you want to upload your ipa to bugly, add the following to your `fastfile`
 ```ruby
-lane :upload_ipa do
+lane :upload_app do
     upload_app_to_bugly(
       file_path:"<your *.ipa filepath>",
       app_key:"<your app_key>",
