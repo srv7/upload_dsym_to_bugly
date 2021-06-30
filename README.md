@@ -7,6 +7,8 @@
 2021 年 6 月 28 日 开始，bugly 不再支持使用 openApi 的方式上传符号表，需要使用官方提供的命令行上传工具进行上传。
 本插件当前使用的工具版本为：__3.3.4__
 
+另外去除了上传 ipa 到 bugly 的 action。
+
 ## Getting Started
 
 This project is a [_fastlane_](https://github.com/fastlane/fastlane) plugin. To get started with `fastlane-plugin-upload_dsym_to_bugly`, add it to your project by running:
