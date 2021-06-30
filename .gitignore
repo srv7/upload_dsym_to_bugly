@@ -11,3 +11,4 @@ fastlane/report.xml
 coverage
 test-results
 .idea/
+.DS_Store

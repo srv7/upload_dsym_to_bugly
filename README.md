@@ -2,6 +2,11 @@
 
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-upload_dsym_to_bugly)
 
+
+## Note
+2021 年 6 月 28 日 开始，bugly 不再支持使用 openApi 的方式上传符号表，需要使用官方提供的命令行上传工具进行上传。
+本插件当前使用的工具版本为：__3.3.4__
+
 ## Getting Started
 
 This project is a [_fastlane_](https://github.com/fastlane/fastlane) plugin. To get started with `fastlane-plugin-upload_dsym_to_bugly`, add it to your project by running:
@@ -14,35 +19,14 @@ add the following to your `fastfile`
 ```ruby
 lane :upload_dysm do
     upload_dsym_to_bugly(
-      file_path: "<your dSYM.zip path>/<your dSYM.zip name>",
-      file_name: "<your dSYM.zip name>",
+      file_path: "<path/to/your/x.app.dSYM.zip",
       app_key: "<your app_key>",
       app_id:"<your app_id>",
-      api_version: 1,
-      symbol_type: 2, # iOS => 2, Android => 1
       bundle_id: '<your bundle id>',
-      product_version: get_version_number
+      version: get_version_number,
+      raise_if_error: false
     )
 end
-```
-
-if you want to upload your ipa to bugly, add the following to your `fastfile`
-```ruby
-lane :upload_app do
-    upload_app_to_bugly(
-      file_path:"<your *.ipa filepath>",
-      app_key:"<your app_key>",
-      app_id:"<your app_id>",
-      pid:"2",
-      title:"<title>",
-      desc:"<description>",
-      secret:"<secret>",
-      users:"<users>",
-      password:"<password>",
-      download_limit:download_limit
-    )
-end
-
 ```
 
 ## About upload_dsym_to_bugly
