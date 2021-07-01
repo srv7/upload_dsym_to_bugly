@@ -7,7 +7,11 @@
 2021 年 6 月 28 日 开始，bugly 不再支持使用 openApi 的方式上传符号表，需要使用官方提供的命令行上传工具进行上传。
 本插件当前使用的工具版本为：__3.3.4__
 
-另外去除了上传 ipa 到 bugly 的 action。
+另
+- upload_dsym_to_bugly action 的方法参数有变化，请注意。请参照 Getting Start 部分
+- 去除了上传 ipa 到 bugly 的 action。
+
+
 
 ## Getting Started
 
