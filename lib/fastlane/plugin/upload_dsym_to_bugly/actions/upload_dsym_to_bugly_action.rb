@@ -24,19 +24,19 @@ module Fastlane
         end
 
         if !Dir.glob(file_path).empty?
-            sh("unzip -o #{file_path} -d #{unzip_path}")
+            sh("unzip -o \"#{file_path}\" -d \"#{unzip_path}\"")
         else
           UI.message "dSYM zip File don't exist"
           Actions.lane_context[SharedValues::UPLOAD_DSYM_TO_BUGLY_RESULT] = false
           raise if params[:raise_if_error]
         end
-        cmd = "java -jar #{jar_path} -appid #{params[:app_id]} -appkey #{params[:app_key]} -bundleid #{params[:bundle_id]} -version #{params[:version]} -platform #{params[:platform]} -inputSymbol #{unzip_path}"
+        cmd = "java -jar \"#{jar_path}\" -appid \"#{params[:app_id]}\" -appkey \"#{params[:app_key]}\" -bundleid \"#{params[:bundle_id]}\" -version \"#{params[:version]}\" -platform \"#{params[:platform]}\" -inputSymbol \"#{unzip_path}\""
 
         log_file = "dSYM_upload_result.log"
 
         begin
           sh("#{cmd} > #{log_file}")
-          last_line = sh("tail -n 1 #{log_file}")
+          last_line = sh("tail -n 1 \"#{log_file}\"")
 
           success = last_line.include?("retCode: 200") and last_line.include?("\"msg\":\"success\"")
           if success
