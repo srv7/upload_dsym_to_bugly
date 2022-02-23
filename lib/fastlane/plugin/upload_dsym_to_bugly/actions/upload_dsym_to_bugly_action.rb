@@ -128,7 +128,7 @@ module Fastlane
                                        optional: false),
           FastlaneCore::ConfigItem.new(key: :java_path,
                                        env_name: "FL_UPLOAD_DSYM_TO_BUGLY_JAVA_PATH",
-                                       description: "Use specific Java, instead of system one.",
+                                       description: "Use specific Java, instead of system one",
                                        default_value: nil,
                                        is_string: true,
                                        optional: true),
