@@ -30,7 +30,9 @@ module Fastlane
           Actions.lane_context[SharedValues::UPLOAD_DSYM_TO_BUGLY_RESULT] = false
           raise if params[:raise_if_error]
         end
-        cmd = "java -jar \"#{jar_path}\" -appid \"#{params[:app_id]}\" -appkey \"#{params[:app_key]}\" -bundleid \"#{params[:bundle_id]}\" -version \"#{params[:version]}\" -platform \"#{params[:platform]}\" -inputSymbol \"#{unzip_path}\""
+
+        java_path = params[:java_path] || 'java'
+        cmd = "#{java_path} -jar \"#{jar_path}\" -appid \"#{params[:app_id]}\" -appkey \"#{params[:app_key]}\" -bundleid \"#{params[:bundle_id]}\" -version \"#{params[:version]}\" -platform \"#{params[:platform]}\" -inputSymbol \"#{unzip_path}\""
 
         log_file = "dSYM_upload_result.log"
 
@@ -123,7 +125,13 @@ module Fastlane
                                        default_value: true,
                                        is_string: false,
                                        type: Boolean,
-                                       optional: false)
+                                       optional: false),
+          FastlaneCore::ConfigItem.new(key: :java_path,
+                                       env_name: "FL_UPLOAD_DSYM_TO_BUGLY_JAVA_PATH",
+                                       description: "Use specific Java, instead of system one",
+                                       default_value: nil,
+                                       is_string: true,
+                                       optional: true),
         ]
       end
 
