@@ -10,7 +10,7 @@ module Fastlane
     class UploadDsymToBuglyAction < Action
       def self.run(params)
 
-        jar_path = File.expand_path('../../jars/buglyqq-upload-symbol-3.3.4.jar', __FILE__)
+        jar_path = File.expand_path('../../jars/buglyqq-upload-symbol.jar', __FILE__)
         UI.message "jar path: #{jar_path}"
 
         file_path = File.expand_path("#{params[:file_path]}")
@@ -38,14 +38,14 @@ module Fastlane
 
         begin
           sh("#{cmd} > #{log_file}")
-          last_line = sh("tail -n 1 \"#{log_file}\"")
+          log_content = File.read("#{log_file}")
 
-          success = last_line.include?("retCode: 200") and last_line.include?("\"msg\":\"success\"")
+          success = log_content.include?("retCode: 200") and log_content.include?("\"msg\":\"所有符号表都已经上传过。\"")
           if success
-            UI.message "dSYM upload successfully 🎉 "            
+            UI.success " 🎉 🎉 🎉 dSYM upload successfully (づ｡◕‿‿◕｡)づ"            
             Actions.lane_context[SharedValues::UPLOAD_DSYM_TO_BUGLY_RESULT] = true
           else
-            UI.message "dSYM upload failed: #{last_line}"
+            UI.error "┭┮﹏┭┮ dSYM upload failed ┭┮﹏┭┮"
             Actions.lane_context[SharedValues::UPLOAD_DSYM_TO_BUGLY_RESULT] = false
             raise if params[:raise_if_error]        
           end
